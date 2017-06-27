@@ -49,7 +49,9 @@ SlackNotifier::Message.send(
   channel: 'errors',
   nickname: 'Bugs',
   text: ex.message,
-  report: ex.backtrace
+  icon_emoji: ':bug:',
+  report: ex.backtrace,
+  report_color: '#D3D3D3'
 )
 ```
 

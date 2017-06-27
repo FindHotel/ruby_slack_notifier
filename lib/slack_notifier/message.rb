@@ -1,9 +1,11 @@
 module SlackNotifier
   class Message
-    def self.send(text:, channel: nil, nickname: nil, icon_emoji: nil, icon_url: nil, report: nil)
+    def self.send(text:, channel: nil, nickname: nil, icon_emoji: nil, report: nil, report_color: nil)
       channel ||= Config.default_channel
       nickname ||= Config.default_nickname
-      new(text, channel, nickname, icon_emoji, icon_url, report).tap(&:deliver)
+      icon = icon_emoji || Config.default_icon_emoji
+      report_color = report_color || Config.default_report_color
+      new(text, channel, nickname, icon, report, report_color).tap(&:deliver)
     rescue => ex
       raise ex if Config.raise_delivery_errors
       puts ex.message
@@ -33,42 +35,18 @@ module SlackNotifier
 
     private
 
-    def initialize(message, channel, nickname, icon, icon_ur, report)
+    def initialize(message, channel, nickname, icon, report, report_color)
       @message = message
       @channel = channel
       @nickname = nickname
-      @created_at = Time.now
+      @icon_emoji = icon
       @report = report
-
-      set_icon(icon, icon_ur)
+      @report_color = report_color
+      @created_at = Time.now
     end
 
     def icon_param
-      @icon_emoji ? { icon_emoji: @icon_emoji } : { icon_url: @icon_url }
-    end
-
-    def set_icon(icon_emoji, icon_url)
-      if no_icon?(icon_emoji, icon_url)
-        @icon_emoji = Config.default_icon_emoji
-      end
-
-      if more_than_one_icon?(icon_emoji, icon_url)
-        fail 'Please specify either an icon_emoji or an icon_url'
-      end
-
-      if icon_emoji
-        @icon_emoji = icon_emoji
-      else
-        @icon_url = icon_url
-      end
-    end
-
-    def no_icon?(icon_emoji, icon_url)
-      icon_emoji.nil? && icon_url.nil?
-    end
-
-    def more_than_one_icon?(icon_emoji, icon_url)
-      !icon_emoji.nil? && !icon_url.nil?
+      { icon_emoji: @icon_emoji }
     end
 
     def compose_attachment
@@ -76,7 +54,7 @@ module SlackNotifier
           attachments: [
               {
                   title: Config.default_report_title,
-                  color: Config.default_report_color,
+                  color: @report_color,
                   text: key_value_pairs_to_s(@report)
               }
           ]
@@ -84,7 +62,7 @@ module SlackNotifier
     end
 
     def key_value_pairs_to_s(hash)
-      hash.map { |k, v| "#{k}: #{v}" }.join("\n")
+      hash.map { |k, v| "#{k.to_s.gsub(/_/, ' ').titleize}: #{v}" }.join("\n")
     end
   end
 end

@@ -1,4 +1,5 @@
 require 'json'
+require 'titleize'
 require 'slack_notifier/config'
 require 'slack_notifier/message'
 require 'slack_notifier/version'
