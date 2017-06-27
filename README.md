@@ -1,6 +1,11 @@
+[![Gem Version](https://img.shields.io/gem/v/slack_notifier.svg)](https://rubygems.org/gems/slack_notifier)
+[![Master](https://travis-ci.org/FindHotel/ruby_slack_notifier.svg?branch=master)](https://travis-ci.org/FindHotel/ruby_slack_notifier)
+
 # SlackNotifier
 
 Simple Ruby gem for sending messages to Slack
+
+<img width="800" alt="slack notifier" src="https://user-images.githubusercontent.com/6284234/27587063-3037ceba-5b43-11e7-82a6-fbe2c13952f2.png">
 
 ## Installation
 
