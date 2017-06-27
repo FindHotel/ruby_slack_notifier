@@ -25,8 +25,8 @@ SlackNotifier.configure({
   default_channel: 'deployment-alerts',
   default_nickname: 'Deployment Bot',
   default_icon_emoji: ':ship:',
-  attachment_title: 'Details',
-  attachment_color: '#D3D3D3',
+  default_report_title: 'Details',
+  default_report_color: '#D3D3D3',
   webhook_url: 'https://hooks.slack.com/services/X01XXYY11/A1XXY1X00/YYYYYYYYYYYYYYYYYY',
   raise_delivery_errors: false
 })

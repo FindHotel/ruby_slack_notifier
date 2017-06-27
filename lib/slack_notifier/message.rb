@@ -75,8 +75,8 @@ module SlackNotifier
       {
           attachments: [
               {
-                  title: Config.attachment_title,
-                  color: Config.attachment_color,
+                  title: Config.default_report_title,
+                  color: Config.default_report_color,
                   text: key_value_pairs_to_s(@report)
               }
           ]

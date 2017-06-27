@@ -5,8 +5,8 @@ describe SlackNotifier::Config do
         default_channel: 'deployment-alerts',
         default_nickname: 'Deployment Bot',
         default_icon_emoji: ':ship:',
-        attachment_title: 'Details',
-        attachment_color: '#D3D3D3',
+        default_report_title: 'Details',
+        default_report_color: '#D3D3D3',
         webhook_url: 'https://hooks.slack.com/services/X01XXYY11/A1XXY1X00/YYYYYYYYYYYYYYYYYY',
         raise_delivery_errors: false
       }
@@ -28,12 +28,12 @@ describe SlackNotifier::Config do
       expect(SlackNotifier::Config.default_icon_emoji).to eq(':ship:')
     end
 
-    it 'sets attachment_title' do
-      expect(SlackNotifier::Config.attachment_title).to eq('Details')
+    it 'sets default_report_title' do
+      expect(SlackNotifier::Config.default_report_title).to eq('Details')
     end
 
-    it 'sets attachment_color' do
-      expect(SlackNotifier::Config.attachment_color).to eq('#D3D3D3')
+    it 'sets default_report_color' do
+      expect(SlackNotifier::Config.default_report_color).to eq('#D3D3D3')
     end
 
     it 'sets webhook_url' do
