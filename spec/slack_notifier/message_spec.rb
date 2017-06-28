@@ -81,7 +81,7 @@ describe SlackNotifier::Message do
 
     let(:json_payload) do
       ({
-        username: 'FindHotel.net Lunch Bot',
+        username: 'FindHotel Lunch Bot',
         text: 'Lunch is klaar!',
         channel: 'food',
         icon_emoji: ':fork_and_knife:',
