@@ -38,6 +38,7 @@ SlackNotifier.configure({
 ```
 
 ## Usage
+### Send directly
 ```ruby
 SlackNotifier::Message.send(
   text: "This uses all default configuration",
@@ -51,8 +52,19 @@ SlackNotifier::Message.send(
   text: ex.message,
   icon_emoji: ':bug:',
   report: ex.backtrace,
-  report_color: '#D3D3D3'
+  report_color: '#D3D3D3',
+  report_title: 'Backtrace'
 )
+```
+
+### Send later
+```ruby
+message = SlackNotifier::Message.compose(
+  text: "This uses all default configuration",
+  report: 'Some report/attachment text'
+)
+
+message.deliver
 ```
 
 ## Development
