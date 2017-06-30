@@ -58,7 +58,7 @@ module SlackNotifier
     def base_param
       {
           username: @nickname,
-          text: @text.gsub('\'', '`'),
+          text: @text.gsub('\'', '').gsub('`', ''),
           channel: @channel
       }
     end
@@ -81,7 +81,9 @@ module SlackNotifier
     end
 
     def key_value_pairs_to_s(hash)
-      hash.map { |k, v| "#{k.to_s.gsub(/_/, ' ').titleize}: #{v}" }.join("\n")
+      hash.map do |k, v|
+        "#{k.to_s.gsub(/_/, ' ').titleize}: #{v.to_s.gsub('\'', '').gsub('`', '')}"
+      end.join("\n")
     end
   end
 end

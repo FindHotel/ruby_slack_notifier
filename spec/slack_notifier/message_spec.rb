@@ -74,7 +74,7 @@ describe SlackNotifier::Message do
         nickname: 'FindHotel Lunch Bot',
         channel: 'food',
         icon_emoji: ':fork_and_knife:',
-        report: { menu: 'Tortellini al Tartufo e Rigatoni alla Bolognese' },
+        report: { menu: 'Tortellini al Tartufo e Rigatoni all\' Bolognese' },
         report_title: 'What is for lunch today?',
         report_color: '#997EC3')
     end
@@ -89,7 +89,7 @@ describe SlackNotifier::Message do
           {
             title: 'What is for lunch today?',
             color: '#997EC3',
-            text: "Menu: Tortellini al Tartufo e Rigatoni alla Bolognese"
+            text: "Menu: Tortellini al Tartufo e Rigatoni all Bolognese"
           }
         ]
       }).to_json
