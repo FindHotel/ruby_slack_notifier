@@ -64,6 +64,7 @@ module SlackNotifier
     end
 
     def icon_param
+      return {} if @icon_emoji.nil?
       { icon_emoji: @icon_emoji }
     end
 
